@@ -9,7 +9,7 @@ subroutine init
     !初期条件Q
     do i = imin-2, imax+2
         do j = jmin-2, jmax+2
-            if (cos(-theta) * x(i, j) - sin(-theta) * y(i, j) <= 0.0d0) then
+            if (-range_x / 2.0d0 + dx * dble(i) <= 0.0d0) then
                 !-0.5d0 + dx * x(i, j) <= 0.0d0
                 bq(i, j, 1:4) = qtobq(1.0d0, 0.0d0, 0.0d0, 1.0d0)
             else
