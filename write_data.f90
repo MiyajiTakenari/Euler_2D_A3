@@ -6,19 +6,19 @@ subroutine writed(n)
     implicit none
     integer, intent(in) :: n
     integer i, j, index
-    real(8) x_write, y_write, temp_q(4)
+    real(8) x_center, y_center, temp_q(4)
     character filename*128
 
     open(10, file = 'data_q.csv')
-    !14行目と21行目の変更忘れずに
-    i = 10
-    do j = jmin, jmax
+    !14,15行目と21行目の変更忘れずに
+    j = 10
+    do i = imin, imax
         !q(cell center)を表示
         temp_q(:) = bqtoq(bq(i, j, :))
         !glid(cell vertex)をq(i,j)の位置(cell center)にするため、cell center周りの4隅を平均する
-        x_write = (x(i-1, j-1) + x(i, j-1) + x(i, j) + x(i-1, j)) / 4.0d0
-        y_write = (y(i-1, j-1) + y(i, j-1) + y(i, j) + y(i-1, j)) / 4.0d0
-        write(10, *) y_write, ',', temp_q(1), ',', temp_q(2), ',', temp_q(3), ',', temp_q(4)
+        x_center = (x(i-1, j-1) + x(i, j-1) + x(i, j) + x(i-1, j)) / 4.0d0
+        y_center = (y(i-1, j-1) + y(i, j-1) + y(i, j) + y(i-1, j)) / 4.0d0
+        write(10, *) x_center, ',', temp_q(1), ',', temp_q(2), ',', temp_q(3), ',', temp_q(4)
         !& , ',', ',', e(i, j, 1), ',', e(i, j, 2), ',', e(i, j, 3), ',', e(i, j, 4) &
         !& , ',', ',', f(j, i, 1), ',', f(j, i, 2), ',', f(j, i, 3), ',', f(j, i, 4) &
         !& , ',', ',', rec(i, 1), ',', rec(i, 2), ',', rec(i, 3), ',', rec(i, 4), ',', rec(i, 5)
