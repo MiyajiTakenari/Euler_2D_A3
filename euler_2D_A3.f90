@@ -1,4 +1,4 @@
-program euler_2D_A2
+program euler_2D_A3
     use params
     use globals
     use interface_mod
@@ -31,4 +31,4 @@ program euler_2D_A2
 
     call alloc(0)       !割り付け解放
 
-end program euler_2D_A2
+end program euler_2D_A3
